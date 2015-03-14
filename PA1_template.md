@@ -63,7 +63,8 @@ sum(!complete.cases(rawData))
 ## [1] 2304
 ```
 
-Using mean for the day to fill in missing values
+Describe and show with code a strategy for imputing missing data:
+Using mean for the day to fill in missing values as suggested in assigment.
 
 
 ```r
@@ -148,3 +149,23 @@ sum(rawData$steps)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
+```r
+rawData[,2] <- as.Date(rawData[,2], "%Y-%m-%d")
+rawData$weekday <- weekdays(rawData[,2])
+weekdays <- unique(weekdays(rawData[,2]))
+rawDataInWeekDay <- subset(rawData, weekday == weekdays[1] | weekday == weekdays[2] | weekday == weekdays[3] | weekday == weekdays[4] | weekday == weekdays[5])
+rawDataInWeekend <- subset(rawData, weekday == weekdays[6] | weekday == weekdays[6])
+
+par(mfrow = c (2,1), oma=c(0,1,0,0))
+par(mar=c(0,3,4,4))
+plot(rawDataInWeekend$interval, rawDataInWeekend$steps, type = "l", ylab = "", xlab = "", col = "blue", xaxt = "n", yaxt = "n")
+axis(2, at = NULL, labels = FALSE); axis(3, at = NULL, labels = FALSE); axis(4);
+par(mar=c(4,3,0,4))
+plot(rawDataInWeekend$interval, rawDataInWeekend$steps, type = "l", ylab = "", xlab = "Interval", col = "blue")
+axis(1); axis(4, at = NULL, labels = FALSE);
+mtext("Number of steps", 2, outer = TRUE)
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 

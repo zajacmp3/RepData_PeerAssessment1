@@ -36,7 +36,8 @@ which(sumPerInterval == max(sumPerInterval))
 sum(!complete.cases(rawData))
 ```
 
-Using mean for the day to fill in missing values
+Describe and show with code a strategy for imputing missing data:
+Using mean for the day to fill in missing values as suggested in assigment.
 
 ```{r}
 missingData <- rawData[!complete.cases(rawData),]
@@ -65,6 +66,7 @@ sum(data$steps)
 sum(rawData$steps)
 
 ```
+As you can notice above the method for filling NA values did not impact the data cause whole days were filled with NAs and the sum of it was 0.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
